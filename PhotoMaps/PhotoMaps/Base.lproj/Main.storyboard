@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-RS-6PR">
+                                <rect key="frame" x="284" y="285" width="33" height="30"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7ve-9c-ua8" kind="show" id="RVc-cI-jN6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ljA-RS-6PR" secondAttribute="centerX" id="2NV-F8-y6d"/>
+                            <constraint firstAttribute="centerY" secondItem="ljA-RS-6PR" secondAttribute="centerY" id="g7Y-SY-IwQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="237" y="438"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="v6k-xU-ih4">
+            <objects>
+                <viewController id="7ve-9c-ua8" customClass="MapViewController" customModule="PhotoMaps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CV7-Hw-FRi"/>
+                        <viewControllerLayoutGuide type="bottom" id="DpM-CX-IY8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wmE-7d-9CP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-gw-vcc" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagefiles_pin_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-YC-8cn">
+                                <rect key="frame" x="275" y="265" width="50" height="71"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.79038431186868685" green="0.0" blue="0.015887367240730241" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="XJy-JF-Uck"/>
+                                    <constraint firstAttribute="height" constant="71" id="yWv-f3-HCi"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r5a-gw-vcc" firstAttribute="leading" secondItem="wmE-7d-9CP" secondAttribute="leading" id="8ag-g3-X6q"/>
+                            <constraint firstAttribute="centerY" secondItem="J9O-YC-8cn" secondAttribute="centerY" id="Bsb-x4-gsK"/>
+                            <constraint firstAttribute="centerX" secondItem="J9O-YC-8cn" secondAttribute="centerX" id="QyF-NY-wRS"/>
+                            <constraint firstAttribute="trailing" secondItem="r5a-gw-vcc" secondAttribute="trailing" id="X5G-Uv-zcA"/>
+                            <constraint firstItem="DpM-CX-IY8" firstAttribute="top" secondItem="r5a-gw-vcc" secondAttribute="bottom" id="fgJ-yw-dAB"/>
+                            <constraint firstItem="r5a-gw-vcc" firstAttribute="top" secondItem="wmE-7d-9CP" secondAttribute="top" id="kz2-9a-DWk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="centerPinImage" destination="J9O-YC-8cn" id="Lb4-JP-HKB"/>
+                        <outlet property="mapView" destination="r5a-gw-vcc" id="gSr-sJ-6ID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6yt-hV-LDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="899" y="438"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="imagefiles_pin_yellow" width="150" height="214"/>
+    </resources>
+</document>

@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let googleApiKey = "AIzaSyBS-P7JPpKdHTx1x_ys3hVGfhVbdbiNCog";
+    let googleApiKey = "AIzaSyCc2Q0KJTkrlGyy1VngwrAv2p5A4dDzaEM";
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

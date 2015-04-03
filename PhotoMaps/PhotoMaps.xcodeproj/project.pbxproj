@@ -30,6 +30,12 @@
 		6F2832441AC1AEBD0081B90F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2832431AC1AEBD0081B90F /* libc++.dylib */; };
 		6F2832461AC1AECC0081B90F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2832451AC1AECC0081B90F /* libicucore.dylib */; };
 		6F2832481AC1AED80081B90F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2832471AC1AED80081B90F /* libz.dylib */; };
+		FDD980441ACEAF1400E5A0AB /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */; };
+		FDD980461ACEB20A00E5A0AB /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */; };
+		FDD980481ACEB56C00E5A0AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980471ACEB56C00E5A0AB /* Constants.swift */; };
+		FDD9804A1ACEB75700E5A0AB /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980491ACEB75700E5A0AB /* PlaceMarker.swift */; };
+		FDD9804C1ACEC37600E5A0AB /* MarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9804B1ACEC37600E5A0AB /* MarkerInfoView.swift */; };
+		FDD9804E1ACEC39900E5A0AB /* MarkerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD9804D1ACEC39900E5A0AB /* MarkerInfoView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +76,12 @@
 		6F2832451AC1AECC0081B90F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		6F2832471AC1AED80081B90F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6F28324E1AC1B1430081B90F /* PhotoMaps-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoMaps-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
+		FDD980471ACEB56C00E5A0AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FDD980491ACEB75700E5A0AB /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
+		FDD9804B1ACEC37600E5A0AB /* MarkerInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoView.swift; sourceTree = "<group>"; };
+		FDD9804D1ACEC39900E5A0AB /* MarkerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerInfoView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +198,9 @@
 		6F2832311AC1AA1C0081B90F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FDD980491ACEB75700E5A0AB /* PlaceMarker.swift */,
+				FDD9804B1ACEC37600E5A0AB /* MarkerInfoView.swift */,
+				FDD9804D1ACEC39900E5A0AB /* MarkerInfoView.xib */,
 				6F2831FA1AC1A0AB0081B90F /* LaunchScreen.xib */,
 				6F2831F51AC1A0AB0081B90F /* Main.storyboard */,
 			);
@@ -204,6 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				6F2832151AC1A6420081B90F /* CoreDataManager.swift */,
+				FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */,
+				FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */,
+				FDD980471ACEB56C00E5A0AB /* Constants.swift */,
 				6F2831F01AC1A0AB0081B90F /* PhotoMaps.xcdatamodeld */,
 			);
 			name = Model;
@@ -291,6 +309,7 @@
 			files = (
 				6F2831F71AC1A0AB0081B90F /* Main.storyboard in Resources */,
 				6F2831FC1AC1A0AB0081B90F /* LaunchScreen.xib in Resources */,
+				FDD9804E1ACEC39900E5A0AB /* MarkerInfoView.xib in Resources */,
 				6F2831F91AC1A0AB0081B90F /* Images.xcassets in Resources */,
 				6F2832141AC1A2D50081B90F /* GoogleMaps.bundle in Resources */,
 			);
@@ -312,8 +331,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2832301AC1AA160081B90F /* MapViewController.swift in Sources */,
+				FDD980461ACEB20A00E5A0AB /* GoogleDataProvider.swift in Sources */,
 				6F2831EF1AC1A0AB0081B90F /* AppDelegate.swift in Sources */,
+				FDD9804A1ACEB75700E5A0AB /* PlaceMarker.swift in Sources */,
+				FDD980441ACEAF1400E5A0AB /* GooglePlace.swift in Sources */,
+				FDD980481ACEB56C00E5A0AB /* Constants.swift in Sources */,
 				6F2832161AC1A6420081B90F /* CoreDataManager.swift in Sources */,
+				FDD9804C1ACEC37600E5A0AB /* MarkerInfoView.swift in Sources */,
 				6F2831F21AC1A0AB0081B90F /* PhotoMaps.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

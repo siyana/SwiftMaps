@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="LuO-fA-x07" customClass="MarkerInfoView" customModule="PhotoMaps" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="road_128-32.png" translatesAutoresizingMaskIntoConstraints="NO" id="hsS-AG-PBG">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="32"/>
+                    <color key="backgroundColor" red="1" green="0.1305310979" blue="0.15098774770000001" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRn-8r-k4a">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="14"/>
+                    <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99215692280000001" alpha="0.84999999999999998" colorSpace="deviceRGB"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                    <color key="textColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+            <color key="tintColor" red="1" green="0.1305310979" blue="0.15098774770000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="hsS-AG-PBG" firstAttribute="leading" secondItem="LuO-fA-x07" secondAttribute="leading" id="BDr-JD-IaC"/>
+                <constraint firstItem="hsS-AG-PBG" firstAttribute="top" secondItem="LuO-fA-x07" secondAttribute="top" id="PL1-dQ-CjI"/>
+                <constraint firstItem="FRn-8r-k4a" firstAttribute="top" secondItem="LuO-fA-x07" secondAttribute="top" id="PhP-fy-B2g"/>
+                <constraint firstAttribute="trailing" secondItem="hsS-AG-PBG" secondAttribute="trailing" id="aRh-Fj-hjf"/>
+                <constraint firstItem="FRn-8r-k4a" firstAttribute="leading" secondItem="LuO-fA-x07" secondAttribute="leading" id="bGw-aq-kn1"/>
+                <constraint firstAttribute="trailing" secondItem="FRn-8r-k4a" secondAttribute="trailing" id="h45-IY-lXd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="photoTopConstraint" destination="PL1-dQ-CjI" id="UjM-4s-ZS0"/>
+                <outlet property="placeLabel" destination="FRn-8r-k4a" id="m1k-Q2-uQk"/>
+                <outlet property="placePhoto" destination="hsS-AG-PBG" id="9rW-nA-4sk"/>
+            </connections>
+            <point key="canvasLocation" x="343" y="230"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="road_128-32.png" width="128" height="32"/>
+    </resources>
+</document>

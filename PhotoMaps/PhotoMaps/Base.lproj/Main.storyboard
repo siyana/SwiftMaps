@@ -64,7 +64,7 @@
                                             <segment title="Satellite"/>
                                             <segment title="Hybrid"/>
                                         </segments>
-                                        <color key="tintColor" red="0.40392160415649414" green="0.27843138575553894" blue="0.098039224743843079" alpha="1" colorSpace="deviceRGB"/>
+                                        <color key="tintColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="segmentControlValueChanged:" destination="7ve-9c-ua8" eventType="valueChanged" id="qg7-F2-WTX"/>
                                         </connections>
@@ -77,6 +77,13 @@
                                     <constraint firstAttribute="centerX" secondItem="cGC-DZ-CTu" secondAttribute="centerX" id="zfV-fA-VbG"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEj-PY-4zq">
+                                <rect key="frame" x="0.0" y="580" width="600" height="20"/>
+                                <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99215692280000001" alpha="0.84999999999999998" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagefiles_pin_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-YC-8cn">
                                 <rect key="frame" x="285" y="278" width="30" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -93,7 +100,10 @@
                             <constraint firstAttribute="centerY" secondItem="J9O-YC-8cn" secondAttribute="centerY" id="Bsb-x4-gsK"/>
                             <constraint firstAttribute="trailing" secondItem="gjk-TQ-E9v" secondAttribute="trailing" id="DlC-C8-YKV"/>
                             <constraint firstItem="r5a-gw-vcc" firstAttribute="leading" secondItem="gjk-TQ-E9v" secondAttribute="leading" id="E4H-9J-gca"/>
+                            <constraint firstAttribute="trailing" secondItem="aEj-PY-4zq" secondAttribute="trailing" id="G6h-F9-nuk"/>
                             <constraint firstAttribute="centerX" secondItem="J9O-YC-8cn" secondAttribute="centerX" id="QyF-NY-wRS"/>
+                            <constraint firstItem="DpM-CX-IY8" firstAttribute="top" secondItem="aEj-PY-4zq" secondAttribute="bottom" id="WhU-oH-uQQ"/>
+                            <constraint firstItem="aEj-PY-4zq" firstAttribute="leading" secondItem="wmE-7d-9CP" secondAttribute="leading" id="oek-fG-iCo"/>
                             <constraint firstItem="gjk-TQ-E9v" firstAttribute="leading" secondItem="wmE-7d-9CP" secondAttribute="leading" id="snt-WS-l8w"/>
                             <constraint firstItem="r5a-gw-vcc" firstAttribute="trailing" secondItem="gjk-TQ-E9v" secondAttribute="trailing" id="ug1-99-BBd"/>
                             <constraint firstItem="r5a-gw-vcc" firstAttribute="bottom" secondItem="DpM-CX-IY8" secondAttribute="top" id="vca-dh-Umq"/>
@@ -101,7 +111,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="aEj-PY-4zq" id="4SV-Xb-bqd"/>
                         <outlet property="centerPinImage" destination="J9O-YC-8cn" id="Lb4-JP-HKB"/>
+                        <outlet property="centerPinImageVerticalContraint" destination="QyF-NY-wRS" id="9Gf-rw-rBZ"/>
                         <outlet property="mapView" destination="r5a-gw-vcc" id="gSr-sJ-6ID"/>
                         <outlet property="segmentControl" destination="cGC-DZ-CTu" id="hLw-Bk-Cxp"/>
                     </connections>

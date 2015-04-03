@@ -8,16 +8,20 @@
 
 import UIKit
 
-class MapViewController : UIViewController , CLLocationManagerDelegate
+class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapViewDelegate
 {
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var centerPinImage: UIImageView!
+    @IBOutlet weak var centerPinImageVerticalContraint: NSLayoutConstraint!
+    
     @IBOutlet weak var segmentControl: UISegmentedControl! {
         didSet {
             segmentControl.selectedSegmentIndex = MapType.MapTypeNormal
         }
     }
+    
+    @IBOutlet weak var addressLabel: UILabel!
     
     private let locationManager = CLLocationManager()
     
@@ -34,6 +38,8 @@ class MapViewController : UIViewController , CLLocationManagerDelegate
         
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization()
+        
+        mapView.delegate = self
     }
     
     // MARK: Actions
@@ -41,10 +47,10 @@ class MapViewController : UIViewController , CLLocationManagerDelegate
     @IBAction func segmentControlValueChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex
         {
-        case MapType.MapTypeNormal: mapView.mapType = kGMSTypeNormal
-        case MapType.MapTypeSatellite: mapView.mapType = kGMSTypeSatellite
-        case MapType.MapTypeHybrid: mapView.mapType = kGMSTypeHybrid
-        default: println("Ooops, something wrong happens here.")
+            case MapType.MapTypeNormal: mapView.mapType = kGMSTypeNormal
+            case MapType.MapTypeSatellite: mapView.mapType = kGMSTypeSatellite
+            case MapType.MapTypeHybrid: mapView.mapType = kGMSTypeHybrid
+            default: println("Ooops, something wrong happened here.")
         }
     }
 
@@ -68,4 +74,32 @@ class MapViewController : UIViewController , CLLocationManagerDelegate
         }
     }
     
+    
+    // MARK: - Geocoding
+    
+    func reverseGeocodeCoordinate(#coordinate: CLLocationCoordinate2D) {
+        let geocoder = GMSGeocoder()
+       
+        
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                let lines = address.lines as [String]
+                self.addressLabel.text = join("\n", lines)
+                
+                let labelHeight = self.addressLabel.intrinsicContentSize().height
+                self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+                
+                UIView.animateWithDuration(0.25) {
+                    self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+    
+    // MARK: - GMSMapViewDelegate
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        reverseGeocodeCoordinate(coordinate: position.target)
+    }
 }

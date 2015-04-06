@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4no-eR-jyL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -38,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="1049" y="438"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Places-->
         <scene sceneID="v6k-xU-ih4">
             <objects>
                 <viewController id="7ve-9c-ua8" customClass="MapViewController" customModule="PhotoMaps" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,19 +71,34 @@
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94768646408839774" green="0.94768646408839774" blue="0.94768646408839774" alpha="0.66000000000000003" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.99607843137254903" blue="0.99215686274509807" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0DG-en-Cc0"/>
+                                    <constraint firstAttribute="height" constant="50" id="0DG-en-Cc0">
+                                        <variation key="heightClass=compact" constant="38"/>
+                                    </constraint>
                                     <constraint firstAttribute="centerY" secondItem="cGC-DZ-CTu" secondAttribute="centerY" id="omK-HH-bOm"/>
                                     <constraint firstAttribute="centerX" secondItem="cGC-DZ-CTu" secondAttribute="centerX" id="zfV-fA-VbG"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEj-PY-4zq">
                                 <rect key="frame" x="0.0" y="580" width="600" height="20"/>
-                                <color key="backgroundColor" red="0.99215692280000001" green="0.99607849120000003" blue="0.99215692280000001" alpha="0.84999999999999998" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.99607843137254903" blue="0.99215686274509807" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="5j9-0b-IZZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5j9-0b-IZZ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="5j9-0b-IZZ"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagefiles_pin_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-YC-8cn">
                                 <rect key="frame" x="285" y="278" width="30" height="45"/>
@@ -110,6 +126,15 @@
                             <constraint firstItem="gjk-TQ-E9v" firstAttribute="top" secondItem="CV7-Hw-FRi" secondAttribute="bottom" id="wFk-L6-I9A"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Places" id="POP-K1-6vT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="32g-Dm-gHj">
+                            <color key="tintColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Zvh-64-y9H" kind="show" id="NjJ-Us-2gx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addressLabel" destination="aEj-PY-4zq" id="4SV-Xb-bqd"/>
                         <outlet property="centerPinImage" destination="J9O-YC-8cn" id="Lb4-JP-HKB"/>
@@ -121,6 +146,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6yt-hV-LDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1708" y="438"/>
+        </scene>
+        <!--Choose Places Collection View Controller-->
+        <scene sceneID="Rsg-6P-K3N">
+            <objects>
+                <collectionViewController id="Zvh-64-y9H" customClass="ChoosePlacesCollectionViewController" customModule="PhotoMaps" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" id="EvS-dg-JZO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="da2-A5-H3r">
+                            <size key="itemSize" width="133" height="105"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaceTypeCell" id="BqF-Mo-BDN" customClass="PlaceTypeCollectionViewCell" customModule="PhotoMaps" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="133" height="105"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bakery" translatesAutoresizingMaskIntoConstraints="NO" id="uwr-mc-NrA">
+                                            <rect key="frame" x="49" y="8" width="35" height="35"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3s-k2-hcP">
+                                            <rect key="frame" x="8" y="52" width="117" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.99215686274509807" green="0.99607843137254903" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="uwr-mc-NrA" firstAttribute="top" secondItem="BqF-Mo-BDN" secondAttribute="topMargin" id="6f9-Wf-MiW"/>
+                                    <constraint firstItem="S3s-k2-hcP" firstAttribute="leading" secondItem="BqF-Mo-BDN" secondAttribute="leadingMargin" id="CCF-Kv-7gL"/>
+                                    <constraint firstItem="S3s-k2-hcP" firstAttribute="top" secondItem="uwr-mc-NrA" secondAttribute="bottom" constant="9" id="FfP-8G-qbM"/>
+                                    <constraint firstAttribute="centerX" secondItem="uwr-mc-NrA" secondAttribute="centerX" id="diY-db-0IY"/>
+                                    <constraint firstAttribute="centerX" secondItem="S3s-k2-hcP" secondAttribute="centerX" id="fmY-h1-5JO"/>
+                                    <constraint firstItem="S3s-k2-hcP" firstAttribute="trailing" secondItem="BqF-Mo-BDN" secondAttribute="trailingMargin" id="lQc-vH-h9q"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="placeInfoImage" destination="uwr-mc-NrA" id="U1p-bW-Rr4"/>
+                                    <outlet property="placeInfoLabel" destination="S3s-k2-hcP" id="FAS-uw-mtx"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Zvh-64-y9H" id="pbB-3I-NTg"/>
+                            <outlet property="delegate" destination="Zvh-64-y9H" id="xQR-mV-oAP"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uTS-Ke-Mo5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2368" y="449"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RNo-uT-T00">
@@ -142,6 +226,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bakery" width="35" height="35"/>
         <image name="imagefiles_pin_yellow" width="150" height="214"/>
     </resources>
 </document>

@@ -55,7 +55,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization()
         
@@ -108,15 +108,8 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             if let address = response?.firstResult() {
                 let lines = address.lines as [String]
-                self.addressLabel.text = join("\n", lines)
-                
-                let labelHeight = self.addressLabel.intrinsicContentSize().height
-                self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
-                
-                UIView.animateWithDuration(0.25) {
-                    self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
-                    self.view.layoutIfNeeded()
-                }
+                self.addressLabel.text = join(", ", lines)
+                self.updateAdressLabel()
             }
         }
     }
@@ -127,7 +120,24 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         reverseGeocodeCoordinate(coordinate: position.target)
     }
     
+    // MARK: - Rotation
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.updateAdressLabel()
+    }
+    
     // MARK: Help methods
+    
+    func updateAdressLabel() {
+        let labelHeight = self.addressLabel.intrinsicContentSize().height
+        
+        UIView.animateWithDuration(0.25) {
+            self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+            self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
+            self.view.layoutIfNeeded()
+        }
+
+    }
     
     func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
         // 1

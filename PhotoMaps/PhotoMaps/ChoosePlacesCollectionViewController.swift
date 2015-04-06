@@ -10,13 +10,36 @@ import UIKit
 
 let reuseIdentifier = "PlaceTypeCell"
 
+protocol ChoosePlacesCollectionViewControllerDelegate {
+    func choosenPlaces(places: Array<String>, sender: AnyObject) -> Void
+}
+
 class ChoosePlacesCollectionViewController: UICollectionViewController {
+    
+    var delegate: ChoosePlacesCollectionViewControllerDelegate?
+    var choosenPlaces: [String: Bool] = Dictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        var placesArray:Array<String> = []
+        if choosenPlaces.isEmpty {
+          //  choosenPlaces.keys = GlobalConstants.DefaulPlacesTypes
+            placesArray = GlobalConstants.DefaulPlacesTypes
+        } else {
+            for (key,value) in choosenPlaces {
+                if value == true {
+                    placesArray.append(key)
+                }
+            }
+        }
+        
+        delegate?.choosenPlaces(placesArray, sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,12 +74,29 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
         var placeType = GlobalConstants.DefaulPlacesTypes[indexPath.row] as String
         
         cell.placeInfoImage.image =  UIImage(named: placeType + "_pin")
-        cell.placeInfoLabel.text = placeType.capitalizedString        
+        cell.placeInfoLabel.text = placeType.capitalizedString
+        
+        if choosenPlaces[placeType.lowercaseString] == true {
+            cell.selectCell()
+        }
         
         return cell
     }
     
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as PlaceTypeCollectionViewCell
+        if cell.isSelected {
+            cell.deselectCell()
+            
+            choosenPlaces[cell.placeInfoLabel.text!.lowercaseString] = false
+        } else {
+            cell.selectCell()
+            choosenPlaces[cell.placeInfoLabel.text!.lowercaseString] = true
+        }
+        
+    }
     
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -65,12 +105,12 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
     }
     */
     
-    /*
+    
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
+        return true
     }
-    */
+    
     
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

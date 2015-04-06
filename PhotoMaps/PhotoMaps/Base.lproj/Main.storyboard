@@ -130,7 +130,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="32g-Dm-gHj">
                             <color key="tintColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="Zvh-64-y9H" kind="show" id="NjJ-Us-2gx"/>
+                                <segue destination="Zvh-64-y9H" kind="show" identifier="ChoosePlacesSegue" id="NjJ-Us-2gx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,19 +178,29 @@
                                             <color key="textColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="n1b-hI-HhP">
+                                            <rect key="frame" x="113" y="85" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="8nu-hf-F1m"/>
+                                                <constraint firstAttribute="width" constant="20" id="sjX-P4-FJr"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.99215686274509807" green="0.99607843137254903" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="uwr-mc-NrA" firstAttribute="top" secondItem="BqF-Mo-BDN" secondAttribute="topMargin" id="6f9-Wf-MiW"/>
+                                    <constraint firstAttribute="trailing" secondItem="n1b-hI-HhP" secondAttribute="trailing" id="C48-xm-L8Y"/>
                                     <constraint firstItem="S3s-k2-hcP" firstAttribute="leading" secondItem="BqF-Mo-BDN" secondAttribute="leadingMargin" id="CCF-Kv-7gL"/>
                                     <constraint firstItem="S3s-k2-hcP" firstAttribute="top" secondItem="uwr-mc-NrA" secondAttribute="bottom" constant="9" id="FfP-8G-qbM"/>
                                     <constraint firstAttribute="centerX" secondItem="uwr-mc-NrA" secondAttribute="centerX" id="diY-db-0IY"/>
                                     <constraint firstAttribute="centerX" secondItem="S3s-k2-hcP" secondAttribute="centerX" id="fmY-h1-5JO"/>
                                     <constraint firstItem="S3s-k2-hcP" firstAttribute="trailing" secondItem="BqF-Mo-BDN" secondAttribute="trailingMargin" id="lQc-vH-h9q"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="n1b-hI-HhP" secondAttribute="bottom" constant="-8" id="vMf-rl-Uan"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="addImageView" destination="n1b-hI-HhP" id="FsB-BT-5Cg"/>
                                     <outlet property="placeInfoImage" destination="uwr-mc-NrA" id="U1p-bW-Rr4"/>
                                     <outlet property="placeInfoLabel" destination="S3s-k2-hcP" id="FAS-uw-mtx"/>
                                 </connections>
@@ -226,6 +236,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="20" height="20"/>
         <image name="bakery" width="35" height="35"/>
         <image name="imagefiles_pin_yellow" width="150" height="214"/>
     </resources>

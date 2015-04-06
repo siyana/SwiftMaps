@@ -14,7 +14,7 @@ private struct MapType{
     static let MapTypeHybrid = 2
 }
 
-class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapViewDelegate
+class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapViewDelegate, ChoosePlacesCollectionViewControllerDelegate
 {
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -50,7 +50,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    private var searchTypes: [String]?
+    private var searchTypes: [String] = GlobalConstants.DefaulPlacesTypes
     // MARK: - ViewController Lyfe cicle
     
     override func viewDidLoad() {
@@ -60,8 +60,6 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         locationManager.requestWhenInUseAuthorization()
         
         mapView.delegate = self
-        
-        searchTypes = GlobalConstants.DefaulPlacesTypes
     }
     
     // MARK: Actions
@@ -98,61 +96,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    
-    // MARK: - Geocoding
-    
-    func reverseGeocodeCoordinate(#coordinate: CLLocationCoordinate2D) {
-        let geocoder = GMSGeocoder()
-       
-        
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            if let address = response?.firstResult() {
-                let lines = address.lines as [String]
-                self.addressLabel.text = join(", ", lines)
-                self.updateAdressLabel()
-            }
-        }
-    }
-    
-    // MARK: - GMSMapViewDelegate
-    
-    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        reverseGeocodeCoordinate(coordinate: position.target)
-    }
-    
-    // MARK: - Rotation
-    
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.updateAdressLabel()
-    }
-    
-    // MARK: Help methods
-    
-    func updateAdressLabel() {
-        let labelHeight = self.addressLabel.intrinsicContentSize().height
-        
-        UIView.animateWithDuration(0.25) {
-            self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
-            self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
-            self.view.layoutIfNeeded()
-        }
-
-    }
-    
-    func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
-        // 1
-        mapView.clear()
-        // 2
-        dataProvider.fetchPlacesNearCoordinate(coordinate: coordinate, radius: mapRadius, types: searchTypes ?? GlobalConstants.DefaulPlacesTypes) { places in
-            for place: GooglePlace in places {
-                // 3
-                let marker = PlaceMarker(place: place)
-                // 4
-                marker.map = self.mapView
-            }
-        }
-    }
-    
+    //MARK: MapView Delegate 
     func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) -> UIView! {
         // 1
         let placeMarker = marker as PlaceMarker
@@ -169,8 +113,8 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
             } else {
                 infoView.image = UIImage(named: "generic")
             }
-//            let containerView = UIView(frame: CGRect(x: 0,y: 0,width: 160,height: 150))
-//            containerView.addSubview(infoView)
+            //            let containerView = UIView(frame: CGRect(x: 0,y: 0,width: 160,height: 150))
+            //            containerView.addSubview(infoView)
             
             return infoView
         } else {
@@ -198,4 +142,83 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
             }
         }
     }
+    
+    
+    // MARK: - Geocoding
+    
+    func reverseGeocodeCoordinate(#coordinate: CLLocationCoordinate2D) {
+        let geocoder = GMSGeocoder()
+       
+        
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                let lines = address.lines as [String]
+                self.addressLabel.text = join(", ", lines)
+                self.updateAdressLabel()
+            }
+        }
+    }
+    
+    // MARK: - GMSMapViewDelegate
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        reverseGeocodeCoordinate(coordinate: position.target)
+    }
+    
+    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+        fetchNearbyPlaces(coordinate)
+    }
+    
+    // MARK: - Rotation
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.updateAdressLabel()
+    }
+    
+    // MARK: - ChoosenPlaces Delegate
+    
+    func choosenPlaces(places: Array<String>, sender: AnyObject) {
+        searchTypes = places
+        locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: - Help methods
+    
+    func updateAdressLabel() {
+        let labelHeight = self.addressLabel.intrinsicContentSize().height
+        
+        UIView.animateWithDuration(0.25) {
+            self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+            self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
+            self.view.layoutIfNeeded()
+        }
+
+    }
+    
+    func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
+        // 1
+        mapView.clear()
+        // 2
+        dataProvider.fetchPlacesNearCoordinate(coordinate: coordinate, radius: mapRadius, types: searchTypes ?? GlobalConstants.DefaulPlacesTypes) { places in
+            for place: GooglePlace in places {
+                // 3
+                let marker = PlaceMarker(place: place)
+                // 4
+                marker.map = self.mapView
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ChoosePlacesSegue" {
+            if let destination = segue.destinationViewController as? ChoosePlacesCollectionViewController {
+                destination.delegate = self
+                for placeType in searchTypes {
+                    destination.choosenPlaces[placeType] = true
+                }
+            }
+        }
+    }
+    
+  
 }

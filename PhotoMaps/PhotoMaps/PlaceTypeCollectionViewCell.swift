@@ -18,6 +18,17 @@ class PlaceTypeCollectionViewCell: UICollectionViewCell {
         }
     }
     @IBOutlet weak var placeInfoLabel: UILabel!
+    @IBOutlet weak var addImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        self.addImageView.alpha = 0
+    }
+    
+    override func prepareForReuse() {
+         self.addImageView.alpha = 0
+    }
+    
+    var isSelected = false
     
     private var randomColor: UIColor {
         get {
@@ -28,4 +39,19 @@ class PlaceTypeCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func selectCell() {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.layer.borderWidth = 4.0
+            self.addImageView.alpha = 1
+        })
+        self.isSelected = true
+    }
+    
+    func deselectCell(){
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.layer.borderWidth = 2.0
+            self.addImageView.alpha = 0
+        })
+        self.isSelected = false
+    }
 }

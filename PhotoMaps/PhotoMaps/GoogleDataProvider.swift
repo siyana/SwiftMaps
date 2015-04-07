@@ -16,7 +16,7 @@ class GoogleDataProvider {
         return NSURLSession.sharedSession()
     }
     
-    func fetchPlacesNearCoordinate(#coordinate: CLLocationCoordinate2D, #radius: Double, #types: [String], completion: (([GooglePlace]) -> Void)) -> () {
+    func fetchPlacesNearCoordinate(coordinate: CLLocationCoordinate2D, radius: Double, types: [String], completion: (([GooglePlace]) -> Void)) -> () {
         var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(GlobalConstants.googleApiKey)&location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&rankby=prominence&sensor=true"
         
         let typesString = types.count > 0 ? join("|", types) : "florist"
@@ -89,12 +89,14 @@ class GoogleDataProvider {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             session.downloadTaskWithURL(NSURL(string: urlString)!) {url, response, error in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                let downloadedPhoto = UIImage(data: NSData(contentsOfURL: url)!)
-                self.photoCache[reference] = downloadedPhoto
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(downloadedPhoto)
+                if let downloadedPhoto = UIImage(data: NSData(contentsOfURL: url)!) {
+                    self.photoCache[reference] = downloadedPhoto
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(downloadedPhoto)
+                    }
                 }
                 }.resume()
+            
         }
     }
 }

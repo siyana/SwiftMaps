@@ -25,7 +25,9 @@ class PlaceTypeCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-         self.addImageView.alpha = 0
+        self.addImageView.alpha = 0
+        self.layer.borderWidth = 2.0
+        self.isSelected = false
     }
     
     var isSelected = false
@@ -38,7 +40,7 @@ class PlaceTypeCollectionViewCell: UICollectionViewCell {
             return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 0.2)
         }
     }
-
+    
     func selectCell() {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.layer.borderWidth = 4.0

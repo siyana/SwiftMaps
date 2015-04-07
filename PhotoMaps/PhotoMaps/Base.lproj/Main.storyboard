@@ -100,7 +100,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagefiles_pin_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-YC-8cn">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagefiles_pin_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="J9O-YC-8cn">
                                 <rect key="frame" x="285" y="278" width="30" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.79038431186868685" green="0.0" blue="0.015887367240730241" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,7 +157,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="da2-A5-H3r">
                             <size key="itemSize" width="133" height="105"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="40"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
@@ -206,6 +206,27 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlacesHeaderView" id="rXd-t6-Tuo" customClass="PlacesCollectionHeaderView" customModule="PhotoMaps" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhI-b7-3ZZ">
+                                    <rect key="frame" x="20" y="10" width="564" height="20"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailingMargin" secondItem="WhI-b7-3ZZ" secondAttribute="trailing" constant="8" id="6YH-j1-Rka"/>
+                                <constraint firstItem="WhI-b7-3ZZ" firstAttribute="leading" secondItem="rXd-t6-Tuo" secondAttribute="leading" constant="20" id="Lc8-oa-fpI"/>
+                                <constraint firstAttribute="centerY" secondItem="WhI-b7-3ZZ" secondAttribute="centerY" id="YyR-kt-L10"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="titlelabel" destination="WhI-b7-3ZZ" id="iDV-vw-U3J"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="Zvh-64-y9H" id="pbB-3I-NTg"/>
                             <outlet property="delegate" destination="Zvh-64-y9H" id="xQR-mV-oAP"/>

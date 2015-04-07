@@ -29,8 +29,7 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
     override func viewDidDisappear(animated: Bool) {
         var placesArray:Array<String> = []
         if choosenPlaces.isEmpty {
-          //  choosenPlaces.keys = GlobalConstants.DefaulPlacesTypes
-            placesArray = GlobalConstants.DefaulPlacesTypes
+            placesArray = []
         } else {
             for (key,value) in choosenPlaces {
                 if value == true {
@@ -60,18 +59,20 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return GlobalConstants.DefaulPlacesTypes.count
     }
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GlobalConstants.DefaulPlacesTypes.count
+        var sectionitems = GlobalConstants.DefaulPlacesTypes[section] as PlacesSection
+        return sectionitems.sectionItems.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PlaceTypeCollectionViewCell
         
-        var placeType = GlobalConstants.DefaulPlacesTypes[indexPath.row] as String
+        var placesDict = GlobalConstants.DefaulPlacesTypes[indexPath.section] as PlacesSection
+        var placeType =  placesDict.sectionItems[indexPath.row] as String
         
         cell.placeInfoImage.image =  UIImage(named: placeType + "_pin")
         cell.placeInfoLabel.text = placeType.capitalizedString
@@ -81,6 +82,15 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
         }
         
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        var headerView: PlacesCollectionHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "PlacesHeaderView", forIndexPath: indexPath) as PlacesCollectionHeaderView
+        
+        headerView.titlelabel.text = GlobalConstants.DefaulPlacesTypes[indexPath.section].sectionTitle.uppercaseString
+        
+        
+        return headerView
     }
     
     // MARK: UICollectionViewDelegate

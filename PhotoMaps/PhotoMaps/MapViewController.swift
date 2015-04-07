@@ -50,16 +50,18 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    private var searchTypes: [String] = GlobalConstants.DefaulPlacesTypes
+    private var searchTypes: [String] = [""]
     // MARK: - ViewController Lyfe cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization()
         
         mapView.delegate = self
+        
+        updateAdressLabel()
     }
     
     // MARK: Actions
@@ -67,13 +69,13 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     @IBAction func segmentControlValueChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex
         {
-            case MapType.MapTypeNormal: mapView.mapType = kGMSTypeNormal
-            case MapType.MapTypeSatellite: mapView.mapType = kGMSTypeSatellite
-            case MapType.MapTypeHybrid: mapView.mapType = kGMSTypeHybrid
-            default: println("Ooops, something wrong happened here.")
+        case MapType.MapTypeNormal: mapView.mapType = kGMSTypeNormal
+        case MapType.MapTypeSatellite: mapView.mapType = kGMSTypeSatellite
+        case MapType.MapTypeHybrid: mapView.mapType = kGMSTypeHybrid
+        default: println("Ooops, something wrong happened here.")
         }
     }
-
+    
     
     // MARK: - CLLocationManagerDelegate
     
@@ -96,7 +98,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    //MARK: MapView Delegate 
+    //MARK: MapView Delegate
     func mapView(mapView: GMSMapView!, markerInfoContents marker: GMSMarker!) -> UIView! {
         // 1
         let placeMarker = marker as PlaceMarker
@@ -120,6 +122,12 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         } else {
             return nil
         }
+    }
+    
+    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+        reverseGeocodeCoordinate(coordinate: marker.position)
+        
+        return false
     }
     
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
@@ -148,7 +156,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     
     func reverseGeocodeCoordinate(#coordinate: CLLocationCoordinate2D) {
         let geocoder = GMSGeocoder()
-       
+        
         
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             if let address = response?.firstResult() {
@@ -160,10 +168,6 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     }
     
     // MARK: - GMSMapViewDelegate
-    
-    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        reverseGeocodeCoordinate(coordinate: position.target)
-    }
     
     func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
         fetchNearbyPlaces(coordinate)
@@ -185,26 +189,33 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     // MARK: - Help methods
     
     func updateAdressLabel() {
-        let labelHeight = self.addressLabel.intrinsicContentSize().height
-        
+        var labelHeight = self.addressLabel.intrinsicContentSize().height
+        if addressLabel.text == "Label" || addressLabel.text == "" {
+            labelHeight = 0.0
+            addressLabel.hidden = true
+        } else {
+            addressLabel.hidden = false
+        }
         UIView.animateWithDuration(0.25) {
             self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
             self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
             self.view.layoutIfNeeded()
         }
-
+        
     }
     
     func fetchNearbyPlaces(coordinate: CLLocationCoordinate2D) {
         // 1
         mapView.clear()
         // 2
-        dataProvider.fetchPlacesNearCoordinate(coordinate: coordinate, radius: mapRadius, types: searchTypes ?? GlobalConstants.DefaulPlacesTypes) { places in
-            for place: GooglePlace in places {
-                // 3
-                let marker = PlaceMarker(place: place)
-                // 4
-                marker.map = self.mapView
+        if searchTypes.count > 0 {
+            dataProvider.fetchPlacesNearCoordinate(coordinate: coordinate, radius: mapRadius, types: searchTypes) { places in
+                for place: GooglePlace in places {
+                    // 3
+                    let marker = PlaceMarker(place: place)
+                    // 4
+                    marker.map = self.mapView
+                }
             }
         }
     }
@@ -220,5 +231,5 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-  
+    
 }

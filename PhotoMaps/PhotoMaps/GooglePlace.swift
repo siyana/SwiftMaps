@@ -44,7 +44,7 @@ class GooglePlace {
         }
         
         var foundType = ""
-        let possibleTypes = acceptedTypes.count > 0 ? acceptedTypes : GlobalConstants.DefaulPlacesTypes
+        let possibleTypes = acceptedTypes
         for type in dictionary[PlacesDictionaryKeys.Types] as [String] {
             if contains(possibleTypes, type) {
                 foundType = type

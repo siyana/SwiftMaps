@@ -15,4 +15,6 @@ struct GlobalConstants {
         PlacesSection(name: "entertaiment", items: ["amusement_park", "art_gallery", "bowling_alley", "book_store"]),
         PlacesSection(name: "health", items: ["dentist", "doctor", "spa"]),
         PlacesSection(name: "travel", items: ["airport", "bus_station", "train_station", "taxi_stand", "travel_agency"])]
+    
+    static let SamplePlacesPhotos = ["Varna", "Sofia", "London","Paris", "NewYork"]
 }

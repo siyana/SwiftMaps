@@ -15,12 +15,18 @@ struct CellHeigh {
 
 class HomeScreenTableViewController: UITableViewController {
 
+    @IBOutlet weak var placesImagesCollectionView: UICollectionView!
+    
+    let collectionViewController = PlacesImagesCollectionViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.clearsSelectionOnViewWillAppear = true
         
-
+        self.placesImagesCollectionView.delegate = collectionViewController
+        self.placesImagesCollectionView.dataSource = collectionViewController
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }

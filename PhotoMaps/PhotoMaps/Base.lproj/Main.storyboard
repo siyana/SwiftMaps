@@ -16,13 +16,16 @@
                         <sections>
                             <tableViewSection id="YXg-jV-NLa">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="105" id="FFJ-X0-0bX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="165" id="FFJ-X0-0bX">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FFJ-X0-0bX" id="pzb-Kj-YIB">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="explore" translatesAutoresizingMaskIntoConstraints="NO" id="iI8-fP-Nhs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCL-F6-puq">
-                                                    <rect key="frame" x="8" y="77" width="57" height="20"/>
+                                                    <rect key="frame" x="8" y="137" width="57" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.40392160420000001" green="0.27843138579999999" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -30,8 +33,12 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="0.40000000596046448" alpha="0.87" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="iI8-fP-Nhs" secondAttribute="trailing" id="MMR-DL-QdL"/>
                                                 <constraint firstItem="VCL-F6-puq" firstAttribute="leading" secondItem="pzb-Kj-YIB" secondAttribute="leadingMargin" id="NPo-gz-8RX"/>
                                                 <constraint firstItem="VCL-F6-puq" firstAttribute="bottom" secondItem="pzb-Kj-YIB" secondAttribute="bottomMargin" id="eio-Oy-eNa"/>
+                                                <constraint firstAttribute="bottom" secondItem="iI8-fP-Nhs" secondAttribute="bottom" id="r3W-NS-Feq"/>
+                                                <constraint firstItem="iI8-fP-Nhs" firstAttribute="top" secondItem="pzb-Kj-YIB" secondAttribute="top" id="s2x-81-CQu"/>
+                                                <constraint firstItem="iI8-fP-Nhs" firstAttribute="leading" secondItem="pzb-Kj-YIB" secondAttribute="leading" id="yno-lw-FLd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="0.37" colorSpace="calibratedRGB"/>
@@ -39,21 +46,61 @@
                                             <segue destination="7ve-9c-ua8" kind="show" id="rqr-ng-jvB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="3jb-qf-agO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="165" id="3jb-qf-agO">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3jb-qf-agO" id="RHX-lt-ppR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.94999999999999996" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tRK-gj-1WN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="165"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="jCe-RW-k5m">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlacesImagesCell" id="htq-2T-v1q" customClass="PlaceImageCollectionViewCell" customModule="PhotoMaps" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="249" height="160"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="London" translatesAutoresizingMaskIntoConstraints="NO" id="q0q-qG-3bR">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="249" height="160"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="q0q-qG-3bR" firstAttribute="leading" secondItem="htq-2T-v1q" secondAttribute="leading" id="2mq-9Z-5y8"/>
+                                                                <constraint firstAttribute="bottom" secondItem="q0q-qG-3bR" secondAttribute="bottom" id="5tb-XX-GKn"/>
+                                                                <constraint firstItem="q0q-qG-3bR" firstAttribute="top" secondItem="htq-2T-v1q" secondAttribute="top" id="hzx-ya-Dy8"/>
+                                                                <constraint firstAttribute="trailing" secondItem="q0q-qG-3bR" secondAttribute="trailing" id="pEq-ei-9cq"/>
+                                                            </constraints>
+                                                            <size key="customSize" width="249" height="160"/>
+                                                            <connections>
+                                                                <outlet property="imageView" destination="q0q-qG-3bR" id="F3j-cZ-dfO"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62T-qh-hWX">
-                                                    <rect key="frame" x="8" y="77" width="36" height="20"/>
+                                                    <rect key="frame" x="8" y="137" width="36" height="20"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.99215686270000003" green="0.99607843139999996" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tRK-gj-1WN" secondAttribute="trailing" constant="-8" id="1uN-UH-Cx9"/>
                                                 <constraint firstItem="62T-qh-hWX" firstAttribute="leading" secondItem="RHX-lt-ppR" secondAttribute="leadingMargin" id="BFh-sK-fyj"/>
+                                                <constraint firstItem="tRK-gj-1WN" firstAttribute="top" secondItem="RHX-lt-ppR" secondAttribute="topMargin" constant="-8" id="NRe-pB-9tY"/>
                                                 <constraint firstItem="62T-qh-hWX" firstAttribute="bottom" secondItem="RHX-lt-ppR" secondAttribute="bottomMargin" id="W4f-0F-R4Q"/>
+                                                <constraint firstItem="tRK-gj-1WN" firstAttribute="leading" secondItem="RHX-lt-ppR" secondAttribute="leadingMargin" constant="-8" id="WYB-YA-WaY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tRK-gj-1WN" secondAttribute="bottom" constant="-8" id="z0f-rd-ga8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.50196081399917603" green="0.0" blue="0.25098040699958801" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
@@ -73,6 +120,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rNL-Zx-59v"/>
+                    <connections>
+                        <outlet property="placesImagesCollectionView" destination="tRK-gj-1WN" id="sQj-fl-87k"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRP-SU-J8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,8 +346,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="London" width="249" height="160"/>
         <image name="add" width="20" height="20"/>
         <image name="bakery" width="35" height="35"/>
+        <image name="explore" width="900" height="492"/>
         <image name="imagefiles_pin_yellow" width="150" height="214"/>
     </resources>
 </document>

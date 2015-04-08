@@ -88,11 +88,13 @@ class GoogleDataProvider {
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             session.downloadTaskWithURL(NSURL(string: urlString)!) {url, response, error in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                if let downloadedPhoto = UIImage(data: NSData(contentsOfURL: url)!) {
-                    self.photoCache[reference] = downloadedPhoto
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(downloadedPhoto)
+                if url != nil {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    if let downloadedPhoto = UIImage(data: NSData(contentsOfURL: url)!) {
+                        self.photoCache[reference] = downloadedPhoto
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completion(downloadedPhoto)
+                        }
                     }
                 }
                 }.resume()

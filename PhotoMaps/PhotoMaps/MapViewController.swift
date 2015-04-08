@@ -50,14 +50,14 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         }
     }
     
-    private var searchTypes: [String] = [""]
+    private var searchTypes: [String] = []
     // MARK: - ViewController Lyfe cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager.delegate = self;
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         mapView.delegate = self
         
@@ -209,7 +209,7 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
         mapView.clear()
         // 2
         if searchTypes.count > 0 {
-            dataProvider.fetchPlacesNearCoordinate(coordinate: coordinate, radius: mapRadius, types: searchTypes) { places in
+            dataProvider.fetchPlacesNearCoordinate(coordinate, radius: mapRadius, types: searchTypes) { places in
                 for place: GooglePlace in places {
                     // 3
                     let marker = PlaceMarker(place: place)

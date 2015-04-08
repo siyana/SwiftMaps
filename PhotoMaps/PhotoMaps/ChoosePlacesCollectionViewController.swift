@@ -74,7 +74,9 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
         var placesDict = GlobalConstants.DefaulPlacesTypes[indexPath.section] as PlacesSection
         var placeType =  placesDict.sectionItems[indexPath.row] as String
         
-        cell.placeInfoImage.image =  UIImage(named: placeType + "_pin")
+        var placeImage = UIImage(named: placeType + "_pin")?
+
+        cell.placeInfoImage.image = placeImage ?? UIImage(named:placesDict.sectionTitle.lowercaseString + "_pin")?
         cell.placeInfoLabel.text = placeType.capitalizedString
         
         if choosenPlaces[placeType.lowercaseString] == true {

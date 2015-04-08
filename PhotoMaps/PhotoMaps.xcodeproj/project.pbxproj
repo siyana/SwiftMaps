@@ -37,6 +37,7 @@
 		FD4878D11AD52ED500306159 /* HomeScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4878D01AD52ED500306159 /* HomeScreenTableViewController.swift */; };
 		FD4878D31AD5524F00306159 /* PlacesImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4878D21AD5524F00306159 /* PlacesImagesCollectionViewController.swift */; };
 		FD4878D61AD553CE00306159 /* PlaceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4878D51AD553CE00306159 /* PlaceImageCollectionViewCell.swift */; };
+		FD4878D91AD55BBF00306159 /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4878D81AD55BBF00306159 /* SearchMapViewController.swift */; };
 		FDD980441ACEAF1400E5A0AB /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */; };
 		FDD980461ACEB20A00E5A0AB /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */; };
 		FDD980481ACEB56C00E5A0AB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980471ACEB56C00E5A0AB /* Constants.swift */; };
@@ -90,6 +91,7 @@
 		FD4878D01AD52ED500306159 /* HomeScreenTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewController.swift; sourceTree = "<group>"; };
 		FD4878D21AD5524F00306159 /* PlacesImagesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesImagesCollectionViewController.swift; sourceTree = "<group>"; };
 		FD4878D51AD553CE00306159 /* PlaceImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD4878D81AD55BBF00306159 /* SearchMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMapViewController.swift; sourceTree = "<group>"; };
 		FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
 		FDD980471ACEB56C00E5A0AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				6F28322F1AC1AA160081B90F /* MapViewController.swift */,
+				FD4878D81AD55BBF00306159 /* SearchMapViewController.swift */,
 				FD3321381AD2BC8200C09C1F /* ChoosePlacesCollectionViewController.swift */,
 				FD4878D41AD5525600306159 /* Home Screen */,
 			);
@@ -388,6 +391,7 @@
 				6F2832161AC1A6420081B90F /* CoreDataManager.swift in Sources */,
 				FDD9804C1ACEC37600E5A0AB /* MarkerInfoView.swift in Sources */,
 				FD4878D61AD553CE00306159 /* PlaceImageCollectionViewCell.swift in Sources */,
+				FD4878D91AD55BBF00306159 /* SearchMapViewController.swift in Sources */,
 				6F2831F21AC1A0AB0081B90F /* PhotoMaps.xcdatamodeld in Sources */,
 				FD4878D31AD5524F00306159 /* PlacesImagesCollectionViewController.swift in Sources */,
 				FD178CEA1AD3E58F00333C99 /* PlacesSection.swift in Sources */,

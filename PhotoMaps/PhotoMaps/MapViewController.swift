@@ -66,6 +66,11 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     
     // MARK: Actions
     
+    
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func segmentControlValueChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex
         {
@@ -188,19 +193,21 @@ class MapViewController : UIViewController , CLLocationManagerDelegate, GMSMapVi
     
     // MARK: - Help methods
     
-    func updateAdressLabel() {
-        var labelHeight = self.addressLabel.intrinsicContentSize().height
-        if addressLabel.text == "Label" || addressLabel.text == "" {
-            labelHeight = 0.0
-            addressLabel.hidden = true
-        } else {
-            addressLabel.hidden = false
-        }
-        UIView.animateWithDuration(0.25) {
-            self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
-            self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
-            self.view.layoutIfNeeded()
-        }
+    private func updateAdressLabel() {
+       
+            var labelHeight = self.addressLabel.intrinsicContentSize().height
+            if addressLabel.text == "Label" || addressLabel.text == "" {
+                labelHeight = 0.0
+                addressLabel.hidden = true
+            } else {
+                addressLabel.hidden = false
+            }
+            UIView.animateWithDuration(0.25) {
+                self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+//                self.centerPinImageVerticalContraint.constant = ((labelHeight - self.topLayoutGuide.length) * 0.5)
+                self.view.layoutIfNeeded()
+            }
+        
         
     }
     

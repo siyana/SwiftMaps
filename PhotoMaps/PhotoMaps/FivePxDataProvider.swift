@@ -15,7 +15,7 @@ class FivePxDataProvider: NSObject {
         return NSURLSession.sharedSession()
     }
     
-    func fetchPhotos(photoTag: String, completion: (([String]) -> Void)) -> ()  {
+    func fetchPhotos(photoTag: String, completion: (([String])? -> Void)) -> ()  {
         let urlString = "https://api.500px.com/v1/photos?feature=fresh_today&sort=created_at&image_size=3&include_store=store_download&include_states=voted&tags="+photoTag+"&consumer_key=" + GlobalConstants.fivePxApiKey
         
         if photoTask.taskIdentifier > 0 && photoTask.state == .Running {
@@ -27,7 +27,12 @@ class FivePxDataProvider: NSObject {
             
             photoTask = session.dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                completion(self.parseResponseData(data))
+                if data != nil && response != nil {
+                    completion(self.parseResponseData(data))
+                } else {
+                    completion(nil)
+                }
+                
             })
             
             photoTask.resume()

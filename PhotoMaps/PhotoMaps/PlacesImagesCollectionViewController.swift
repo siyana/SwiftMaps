@@ -56,7 +56,9 @@ class PlacesImagesCollectionViewController: UICollectionViewController, UICollec
         let searchedTag = GlobalConstants.SamplePlacesPhotos[indexPath.row] as String
         if !searchedTag.isEmpty {
             FivePxDataProvider().fetchPhotos(searchedTag, completion: { photos in
-                
+                if photos != nil {
+                    println("show photos VC")
+                }
             })
         }
         

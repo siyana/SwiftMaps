@@ -44,6 +44,7 @@
 		FDD9804A1ACEB75700E5A0AB /* PlaceMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD980491ACEB75700E5A0AB /* PlaceMarker.swift */; };
 		FDD9804C1ACEC37600E5A0AB /* MarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9804B1ACEC37600E5A0AB /* MarkerInfoView.swift */; };
 		FDD9804E1ACEC39900E5A0AB /* MarkerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD9804D1ACEC39900E5A0AB /* MarkerInfoView.xib */; };
+		FDF9F0481AD674130097ECB5 /* FivePxDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF9F0471AD674130097ECB5 /* FivePxDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		FDD980491ACEB75700E5A0AB /* PlaceMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceMarker.swift; sourceTree = "<group>"; };
 		FDD9804B1ACEC37600E5A0AB /* MarkerInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoView.swift; sourceTree = "<group>"; };
 		FDD9804D1ACEC39900E5A0AB /* MarkerInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerInfoView.xib; sourceTree = "<group>"; };
+		FDF9F0471AD674130097ECB5 /* FivePxDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FivePxDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,9 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				6F2832151AC1A6420081B90F /* CoreDataManager.swift */,
-				FD178CE91AD3E58F00333C99 /* PlacesSection.swift */,
-				FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */,
-				FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */,
+				FDF9F0471AD674130097ECB5 /* FivePxDataProvider.swift */,
+				FDF9F0461AD673CE0097ECB5 /* Google Services */,
 				FDD980471ACEB56C00E5A0AB /* Constants.swift */,
 				6F2831F01AC1A0AB0081B90F /* PhotoMaps.xcdatamodeld */,
 			);
@@ -273,6 +274,16 @@
 				FD3321361AD2BB7B00C09C1F /* PlaceTypeCollectionViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		FDF9F0461AD673CE0097ECB5 /* Google Services */ = {
+			isa = PBXGroup;
+			children = (
+				FD178CE91AD3E58F00333C99 /* PlacesSection.swift */,
+				FDD980431ACEAF1400E5A0AB /* GooglePlace.swift */,
+				FDD980451ACEB20A00E5A0AB /* GoogleDataProvider.swift */,
+			);
+			name = "Google Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,6 +405,7 @@
 				FD4878D91AD55BBF00306159 /* SearchMapViewController.swift in Sources */,
 				6F2831F21AC1A0AB0081B90F /* PhotoMaps.xcdatamodeld in Sources */,
 				FD4878D31AD5524F00306159 /* PlacesImagesCollectionViewController.swift in Sources */,
+				FDF9F0481AD674130097ECB5 /* FivePxDataProvider.swift in Sources */,
 				FD178CEA1AD3E58F00333C99 /* PlacesSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

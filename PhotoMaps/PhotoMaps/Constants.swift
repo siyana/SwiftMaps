@@ -10,6 +10,7 @@ import Foundation
 
 struct GlobalConstants {
     static let googleApiKey = "AIzaSyCc2Q0KJTkrlGyy1VngwrAv2p5A4dDzaEM"
+    static let fivePxApiKey = "gcPbfcflqrmAtJn5qdw55u2Eyf0elU4SICm7SfWM" //500px API key
     
     static let DefaulPlacesTypes = [PlacesSection(name: "food",items: ["bakery", "bar", "cafe", "grocery_or_supermarket", "restaurant"]),
         PlacesSection(name: "entertaiment", items: ["amusement_park", "art_gallery", "bowling_alley", "book_store"]),

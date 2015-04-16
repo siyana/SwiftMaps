@@ -48,20 +48,26 @@ class PlacesImagesCollectionViewController: UICollectionViewController, UICollec
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("tap")
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let searchMapViewController = storyboard.instantiateViewControllerWithIdentifier("SearchMapViewController") as? SearchMapViewController {
-//            let navigationController = UINavigationController(rootViewController: searchMapViewController)
-//            presenter.presentViewController(navigationController, animated: true, completion: nil)
-//        }
-        let searchedTag = GlobalConstants.SamplePlacesPhotos[indexPath.row] as String
+               let searchedTag = GlobalConstants.SamplePlacesPhotos[indexPath.row] as String
         if !searchedTag.isEmpty {
             FivePxDataProvider().fetchPhotos(searchedTag, completion: { photos in
                 if photos != nil {
-                    println("show photos VC")
+                   self.presentViewsViewController(photos!)
                 }
             })
         }
         
+    }
+    
+    func presentViewsViewController(photoUrls: [String]) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let placesViewVC = storyboard.instantiateViewControllerWithIdentifier(StoryboardIDs.PlacesViewStoryboardID) as? PlacesViewCollectionViewController {
+            placesViewVC.photosUrls = photoUrls
+            let navigationController = UINavigationController(rootViewController: placesViewVC)
+            presenter.presentViewController(navigationController, animated: true, completion: nil)
+        }
+        
+
     }
     
     /*

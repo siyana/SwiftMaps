@@ -8,8 +8,6 @@
 
 import UIKit
 
-let reuseIdentifier = "PlaceTypeCell"
-
 protocol ChoosePlacesCollectionViewControllerDelegate {
     func choosenPlaces(places: Array<String>, sender: AnyObject) -> Void
 }
@@ -69,7 +67,7 @@ class ChoosePlacesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PlaceTypeCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifiers.placeTypeCell, forIndexPath: indexPath) as PlaceTypeCollectionViewCell
         
         var placesDict = GlobalConstants.DefaulPlacesTypes[indexPath.section] as PlacesSection
         var placeType =  placesDict.sectionItems[indexPath.row] as String

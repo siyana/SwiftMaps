@@ -11,14 +11,17 @@ import UIKit
 class PlacesViewCollectionViewController: UICollectionViewController {
 
     var photosUrls: [String] = []
+    var photosTag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Do any additional setup after loading the view.
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancelBarButtonItemTapped:")
+        self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.title = photosTag
+    }
+    
+    func cancelBarButtonItemTapped(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*
@@ -43,9 +46,13 @@ class PlacesViewCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifiers.placeViewCell, forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifiers.placeViewCell, forIndexPath: indexPath) as PlacePhotoCollectionViewCell
     
+//         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.stringURL]];
         // Configure the cell
+        if let urlStr = self.photosUrls[indexPath.row] as String? {
+            cell.imageView.sd_setImageWithURL(NSURL(string:urlStr))
+        }
     
         return cell
     }

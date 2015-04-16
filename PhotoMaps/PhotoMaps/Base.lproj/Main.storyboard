@@ -224,7 +224,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="32g-Dm-gHj">
                             <color key="tintColor" red="0.32549019607843138" green="0.21568627450980393" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="Zvh-64-y9H" kind="show" identifier="" id="NjJ-Us-2gx"/>
+                                <segue destination="Zvh-64-y9H" kind="show" identifier="ChoosePlacesSegue" id="NjJ-Us-2gx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -415,8 +415,8 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fnq-Qe-Va2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sW8-ki-lDJ">
-                            <size key="itemSize" width="385" height="597"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sW8-ki-lDJ">
+                            <size key="itemSize" width="600" height="600"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -426,22 +426,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="385" height="597"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Izh-mA-TTJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="385" height="597"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Izh-mA-TTJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Izh-mA-TTJ" firstAttribute="top" secondItem="B0T-ce-61v" secondAttribute="top" id="dKR-rg-cwA"/>
                                     <constraint firstItem="Izh-mA-TTJ" firstAttribute="leading" secondItem="B0T-ce-61v" secondAttribute="leading" id="g1q-0U-lBY"/>
                                     <constraint firstAttribute="bottom" secondItem="Izh-mA-TTJ" secondAttribute="bottom" id="oSs-7G-aQF"/>
                                     <constraint firstAttribute="trailing" secondItem="Izh-mA-TTJ" secondAttribute="trailing" id="zvk-fT-mfJ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="Izh-mA-TTJ" id="rJK-Uv-oP4"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

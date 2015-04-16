@@ -9,8 +9,8 @@
 import UIKit
 
 struct CellHeigh {
-    static let LandscapeCellHeigh:CGFloat = 105
-    static let PortraitCellHeigh:CGFloat = 165
+    static let LandscapeCellHeigh:CGFloat = (UIScreen.mainScreen().bounds.width) / 3
+    static let PortraitCellHeigh:CGFloat = (UIScreen.mainScreen().bounds.height) / 3
 }
 
 class HomeScreenTableViewController: UITableViewController {

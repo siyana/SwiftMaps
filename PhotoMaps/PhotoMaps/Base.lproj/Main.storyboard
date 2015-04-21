@@ -189,11 +189,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search place" id="KGp-vC-c8I">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="hOG-Ri-rcl"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="hOG-Ri-rcl">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="9G9-up-y9a" id="SjR-77-dJO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="9BT-kS-aDv" id="G3x-OQ-DaF"/>
                         <outlet property="searchBar" destination="Uwc-c7-Bqn" id="OpL-av-qVw"/>
+                        <outlet property="searchBarBottomConstraint" destination="aW5-gB-D6x" id="Pkl-mh-rMO"/>
                         <outlet property="searchDisplayController" destination="5li-qV-CZR" id="5u3-iw-6td"/>
                     </connections>
                 </viewController>

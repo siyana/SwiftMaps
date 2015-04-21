@@ -13,9 +13,12 @@ class SearchPlaceViewController: UIViewController, UISearchBarDelegate, GMSMapVi
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var searchBarBottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        registerForKeyboardNotifications()
         // Do any additional setup after loading the view.
     }
     
@@ -38,6 +41,30 @@ class SearchPlaceViewController: UIViewController, UISearchBarDelegate, GMSMapVi
         }
     }
     
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func registerForKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notif: NSNotification) {
+        if let userInfo = notif.userInfo {
+            if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.searchBarBottomConstraint.constant = keyboardSize.height
+                })
+            }
+        }
+    }
+    
+    func keyboardWillHide(notif: NSNotification) {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.searchBarBottomConstraint.constant = 0
+        })
+    }
     
     
 }

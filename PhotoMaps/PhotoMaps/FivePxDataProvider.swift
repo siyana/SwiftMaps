@@ -16,7 +16,7 @@ class FivePxDataProvider: NSObject {
     }
     
     func fetchPhotos(photoTag: String, completion: (([String])? -> Void)) -> ()  {
-        let urlString = "https://api.500px.com/v1/photos/search?feature=popular&image_size=600&sort=created_at&include_states=voted&only=Nature&exclude=Nude&tag="+photoTag+"&consumer_key=" + GlobalConstants.fivePxApiKey
+        let urlString = "https://api.500px.com/v1/photos/search?feature=fresh_today&image_size=600&sort=created_at&include_states=voted&only=Nature&exclude=Nude&tag="+photoTag+"&consumer_key=" + GlobalConstants.fivePxApiKey
         
         if photoTask.taskIdentifier > 0 && photoTask.state == .Running {
             photoTask.cancel()

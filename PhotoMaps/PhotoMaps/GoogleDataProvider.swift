@@ -16,6 +16,39 @@ class GoogleDataProvider {
         return NSURLSession.sharedSession()
     }
     
+    func fetchPlaceFromText(text: String, completion: (([GooglePlace]) -> Void)) -> () {
+        var urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + text + "&key=" + GlobalConstants.googleApiKey
+        
+        if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
+            placesTask.cancel()
+        }
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) { (data, response, error) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            var placesArray = [GooglePlace]()
+            if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? NSDictionary {
+                if let results = json["results"] as? NSArray {
+                    for rawPlace:AnyObject in results {
+                        let place = GooglePlace(dictionary: rawPlace as NSDictionary, acceptedTypes: [])
+                        placesArray.append(place)
+                        if let reference = place.photoReference {
+                            self.fetchPhotoFromReference(reference) { image in
+                                place.photo = image
+                            }
+                        }
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(placesArray)
+                }
+            }
+        }
+        
+        placesTask.resume()
+    }
+    
     func fetchPlacesNearCoordinate(coordinate: CLLocationCoordinate2D, radius: Double, types: [String], completion: (([GooglePlace]) -> Void)) -> () {
         var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(GlobalConstants.googleApiKey)&location=\(coordinate.latitude),\(coordinate.longitude)&radius=\(radius)&rankby=prominence&sensor=true"
         

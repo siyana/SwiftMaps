@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 let cellIdentifier = "PlacesImagesCell"
 
@@ -48,11 +49,16 @@ class PlacesImagesCollectionViewController: UICollectionViewController, UICollec
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("tap")
+        var hud = PKHUD.sharedHUD
+        hud.contentView = PKHUDProgressView()
+        hud.show()
+        
         let searchedTag = GlobalConstants.SamplePlacesPhotos[indexPath.row] as String
         if !searchedTag.isEmpty {
             FivePxDataProvider().fetchPhotos(searchedTag, completion: { photos in
                 if photos != nil {
-                   self.presentViewsViewController(photos!, tag: searchedTag)
+                    self.presentViewsViewController(photos!, tag: searchedTag)
+                    hud.hide(animated: false)
                 }
             })
         }
@@ -68,7 +74,7 @@ class PlacesImagesCollectionViewController: UICollectionViewController, UICollec
             presenter.presentViewController(navigationController, animated: true, completion: nil)
         }
         
-
+        
     }
     
     /*

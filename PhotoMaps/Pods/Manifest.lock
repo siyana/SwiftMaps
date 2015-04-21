@@ -1,12 +1,15 @@
 PODS:
+  - PKHUD (2.0.1)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
 
 DEPENDENCIES:
+  - PKHUD (~> 2.0)
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
+  PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
 
 COCOAPODS: 0.36.3

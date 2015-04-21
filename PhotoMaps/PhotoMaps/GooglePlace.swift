@@ -10,10 +10,10 @@ import UIKit
 
 class GooglePlace {
    
-    let name: String
-    let address: String
+    let name: String?
+    let address: String?
     let coordinate: CLLocationCoordinate2D
-    let placeType: String
+    let placeType: String?
     let photoReference: String?
     var photo: UIImage?
     
@@ -30,8 +30,8 @@ class GooglePlace {
     }
     
     init(dictionary:NSDictionary, acceptedTypes: [String]) {
-        name = dictionary[PlacesDictionaryKeys.Name] as String
-        address = dictionary[PlacesDictionaryKeys.Address] as String
+        name = dictionary[PlacesDictionaryKeys.Name] as String?
+        address = dictionary[PlacesDictionaryKeys.Address] as String?
         
         let location = dictionary[PlacesDictionaryKeys.LocationOne]?[PlacesDictionaryKeys.LocationTwo] as NSDictionary
         let lat = location[PlacesDictionaryKeys.Latitude] as CLLocationDegrees
@@ -52,7 +52,6 @@ class GooglePlace {
             }
         }
         placeType = foundType
-
     }
     
     

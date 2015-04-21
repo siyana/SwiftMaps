@@ -5,8 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 # ignore all warnings from all pods
 inhibit_all_warnings!
 #use frameworks like in Obj C
- use_frameworks!  
+use_frameworks!  
 
 
- platform :ios, '8.0'  
- pod 'SDWebImage', '~>3.7'  
+platform :ios, '8.0'  
+pod 'SDWebImage', '~>3.7'  
+pod 'PKHUD', '~> 2.0'

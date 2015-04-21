@@ -17,36 +17,42 @@ class GoogleDataProvider {
     }
     
     func fetchPlaceFromText(text: String, completion: (([GooglePlace]) -> Void)) -> () {
-        var urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + text + "&key=" + GlobalConstants.googleApiKey
+        let escapedText = text.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: .RegularExpressionSearch, range: Range<String.Index>(start: text.startIndex, end: text.endIndex))
+        var urlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + escapedText + "&key=" + GlobalConstants.googleApiKey
         
         if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
             placesTask.cancel()
         }
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        
-        placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) { (data, response, error) -> Void in
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            var placesArray = [GooglePlace]()
-            if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? NSDictionary {
-                if let results = json["results"] as? NSArray {
-                    for rawPlace:AnyObject in results {
-                        let place = GooglePlace(dictionary: rawPlace as NSDictionary, acceptedTypes: [])
-                        placesArray.append(place)
-                        if let reference = place.photoReference {
-                            self.fetchPhotoFromReference(reference) { image in
-                                place.photo = image
+        if let url = NSURL(string: urlString) {
+            placesTask = session.dataTaskWithURL(url) { (data, response, error) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                var placesArray = [GooglePlace]()
+                if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? NSDictionary {
+                    if let results = json["results"] as? NSArray {
+                        for rawPlace:AnyObject in results {
+                            let place = GooglePlace(dictionary: rawPlace as NSDictionary, acceptedTypes: [])
+                            placesArray.append(place)
+                            if let reference = place.photoReference {
+                                self.fetchPhotoFromReference(reference) { image in
+                                    place.photo = image
+                                }
                             }
                         }
                     }
-                }
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(placesArray)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(placesArray)
+                    }
                 }
             }
+            
+            placesTask.resume()
+        } else {
+            dispatch_async(dispatch_get_main_queue()) {
+                completion([])
+            }
         }
-        
-        placesTask.resume()
     }
     
     func fetchPlacesNearCoordinate(coordinate: CLLocationCoordinate2D, radius: Double, types: [String], completion: (([GooglePlace]) -> Void)) -> () {
